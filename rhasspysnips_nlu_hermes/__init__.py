@@ -105,22 +105,6 @@ class NluHermesMqtt(HermesClient):
                     slots=slots,
                 )
 
-                # intent
-                yield (
-                    NluIntent(
-                        input=query.input,
-                        id=query.id,
-                        site_id=query.site_id,
-                        session_id=query.session_id,
-                        intent=Intent(intent_name=intent_name, confidence_score=1.0),
-                        slots=slots,
-                        asr_tokens=[NluIntent.make_asr_tokens(query.input.split())],
-                        raw_input=original_input,
-                        wakeword_id=query.wakeword_id,
-                        lang=query.lang,
-                    ),
-                    {"intent_name": intent_name},
-                )
             else:
                 # Not recognized
                 yield NluIntentNotRecognized(
