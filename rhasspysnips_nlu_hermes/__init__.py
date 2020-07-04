@@ -10,7 +10,6 @@ from rhasspyhermes.client import GeneratorType, HermesClient, TopicArgs
 from rhasspyhermes.intent import Intent, Slot, SlotRange
 from rhasspyhermes.nlu import (
     NluError,
-    NluIntent,
     NluIntentNotRecognized,
     NluIntentParsed,
     NluQuery,
@@ -59,7 +58,6 @@ class NluHermesMqtt(HermesClient):
     ) -> typing.AsyncIterable[
         typing.Union[
             NluIntentParsed,
-            typing.Tuple[NluIntent, TopicArgs],
             NluIntentNotRecognized,
             NluError,
         ]
