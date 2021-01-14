@@ -78,6 +78,7 @@ class NluHermesMqtt(HermesClient):
             # Do parsing
             result = self.engine.parse(input_text, query.intent_filter)
             intent_name = result.get("intent", {}).get("intentName")
+            intent_score = result.get("intent", {}).get("probability")
 
             if intent_name:
                 slots = [
@@ -99,7 +100,7 @@ class NluHermesMqtt(HermesClient):
                     id=query.id,
                     site_id=query.site_id,
                     session_id=query.session_id,
-                    intent=Intent(intent_name=intent_name, confidence_score=1.0),
+                    intent=Intent(intent_name=intent_name, confidence_score=intent_score),
                     slots=slots,
                 )
 
